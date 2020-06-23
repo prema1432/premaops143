@@ -1,0 +1,38 @@
+{% load static %}
+   <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
+            <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h3>About - Online Project Submission </h3>
+            <p class="font-italic">
+              Online Project Submission, Management and Progress Monitoring System (OPS)
+
+
+            </p>
+            <ul>
+              <li><i class="icofont-check-circled"></i>
+
+                  OPS is Providing an Online disussion,Documents and Project Sharing for
+              Student and Guide,HOD (Department) and Web real time communication technology.</li>
+              <li><i class="icofont-check-circled"></i>
+                  Any Project that behind the Schedule,the system will be able to send an alert to the Student to notify the Status.
+              </li>
+              <li><i class="icofont-check-circled"></i>
+              Convenient for students and Facultys, using
+                  the online student management system is a
+                  lot easier to use since
+                  they can simply go online 24/7 without any
+                  time restriction.
+              </li>
+            </ul>
+            <a href="{% url 'login' %}" class="read-more">Login your Project World <i class="icofont-long-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->

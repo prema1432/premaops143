@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section id="showcase-inner" class="showcase-search text-white py-5">
+    <div class="container">
+  <center>
+    <div class="section-title">
+        <h3 style="color: red;text-align: center">Search Approved Projects</h3>
+
+    </div></center>
+      <div class="row text-center">
+        <div class="col-md-12">
+          <form action="{%  url 'searchproject' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+             <div class="col-md-4 mb-3">
+                <label class="sr-only">Project Title</label>
+                <input type="text"  value="{{ values.title }}" name="title" class="form-control" placeholder="Project Title">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Batch Year</label>
+                <input type="text" value="{{ values.keywords }}" name="keywords" class="form-control" placeholder="Bath Year (2018, 2020, etc)">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Student Name</label>
+                <input type="text"  value="{{ values.city }}" name="city" class="form-control" placeholder="Student Name">
+              </div>
+
+
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Semester</label>
+                <select name="semester" class="form-control">
+                  <option selected="true" disabled="disabled">Semester (All)</option>
+                  {% for key,value in semester_choice.items %}
+                      <option value="{{ key }}"
+                      {% if key == values.semester %}
+                              selected
+                              {% endif %}
+                      >
+                      {{ value }}
+                      </option>
+                    {%  endfor %}
+                </select>
+              </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="sr-only">Project Type</label>
+                <select name="ptype" class="form-control">
+                  <option selected="true" disabled="disabled">Project Type</option>
+                  {% for key,value in ptype_choice.items %}
+                      <option value="{{ key }}"
+                      {% if key == values.ptype %}
+                              selected
+                              {% endif %}
+                      >
+                      {{ value }}
+                      </option>
+                    {%  endfor %}
+                </select>
+              </div>
+ <div class="col-md-4 mb-3">
+                <label class="sr-only">Guide Name</label>
+                <input type="text"  value="{{ values.gname }}" name="gname" class="form-control" placeholder="Guide Name">
+              </div>
+
+            </div>
+            <!-- Form Row 2 -->
+
+            <button class="btn btn-warning btn-block mt-4" type="submit">Search Projects</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+
+
+  <!-- Listings -->
+  <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+         {%  if listings %}
+
+    {% for listing in listings %}
+ <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" height="250"  width="300" src="{{ listing.pphoto.url }}" alt="">
+            <div class="card-img-overlay">
+              <h2>
+                <span class="badge badge-secondary text-white">Rating : {{listing.rating}} / 10</span>
+              </h2>
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 class="text-primary">{{listing.ptitle}}</h4>
+                <p>
+                  <i class="fas fa-map-marker text-secondary"></i>
+                {{listing.pdescription  |truncatechars_html:20 }}
+                </p>
+              </div>
+              <hr>
+              <div class="row py-2 text-secondary">
+                <div class="col-12">
+                    <img height="50px" width="50px" style="border-radius: 100px;" src="{{ listing.user.photo.url }}" alt="">
+               <span style="font-weight: bold;color: black">{{ listing.user.user.first_name }}
+                   {{ listing.user.user.last_name }}</span>
+                    <center>
+                    <span style="color: red;font-weight: bold" >Batch :
+                        {{listing.user.batch}}</span> <br>
+                    <span style="color: blue;font-weight: bold" >Project Type : {{listing.ptype}}</span>
+</center>
+                </div>
+
+              </div>
+
+              <hr>
+
+              <div class="row text-secondary pb-2">
+                <div style="text-align: right" class="col-12">
+                    <center>
+                        <span style="font-style: italic;font-weight: bold;font-size: small">
+                           -- Under the Guidence of
+                        </span>
+                    </center>
+                   <span style="font-weight: bold;color: green">{{ listing.guide.user.first_name}}
+                   {{ listing.guide.user.last_name }}</span>
+                  <img height="50px" width="50px" style="border-radius: 100px;" src="{{ listing.user.photo.url }}" alt="">
+
+
+                </div>
+              </div>
+{#              <hr>#}
+{#              <a href="{% url 'listing' listing.id   %}" class="btn btn-primary btn-block">More Info</a>#}
+            </div>
+          </div>
+        </div>
+
+
+    {% endfor %}
+          {%  else %}
+    <div class="col-md-12">
+    <center>
+    <h1 style="font-weight: bold;color:red;font-style: italic">No Projects Available</h1>
+</center>
+    </div>
+{% endif %}
+    </div>
+  </section>
+{% endblock %}

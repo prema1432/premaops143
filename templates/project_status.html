@@ -1,0 +1,116 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'alerts.html' %}
+<h3 style="text-decoration: none;">
+    <a class="btn btn-success" style="float: left"
+       href="{% url 'userprojectlist' %}">My Projects</a>
+
+
+
+
+
+</h3>
+
+   <section style="padding: 10px" id="features" class="features">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title text-center">
+        <h3 style="color: blue;font-weight: bold;">Project Status</h3>
+        </div>
+        <div class="section-title">
+          <h2>Project : <b>{{ stu.ptitle |upper }}</b> </h2>
+          <p>Description : <i>{{ stu.pdescription |title }}</i></p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column align-items-lg-center">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+              <i class='bx bx-user-pin bx-burst' style='color:#ff0808' ></i>
+              <h4> Project Guide Status : <span style="color:blue;font-weight: bold">{{ stu.gustatus |upper }}</span></h4>
+                              <h4> HOD  Status : <span style="color:blue;font-weight: bold">{{ stu.hostatus |upper }}</span></h4>
+
+               <p style="color:green;font-style: italic"> &emsp; " -- {{ stu.ptype |title}} Project is Completed Under the
+                    Guidence of  {{ stu.guide |title }} "&emsp; &emsp; &emsp; &emsp;
+                  </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
+              <a  href="#">
+                <i class='bx bxs-file bx-fade-right' style='color:#083cff'  ></i>
+              <h4> Project Guide Comments  : </h4></a>
+              <p style="color:green;font-style: italic"> &emsp; " --
+                  {{ stu.gucomments |title}} "&emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp;  &emsp; </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+
+
+                <i class='bx bxs-file-archive bx-tada' style='color:#f20de6' ></i>
+                  <h4> HOD Comments / Suggestion :   &emsp;  &emsp;  &emsp;  &emsp;</h4>
+              <p style="color:green;font-style: italic">
+                &emsp; " --
+                  {{ stu.hocomments |title}} " </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+              <i class='bx bxs-file-doc bx-spin' style='color:#0de30d'  ></i>
+                <a download="EDocument" href="{{ stu.ereport }}">
+                <h4>Your Project Rating : &emsp;  &emsp;  &emsp;  &emsp;&emsp;  &emsp;  &emsp;  &emsp;</h4></a>
+              <p style="color:red;font-weight:bold;font-size:30px;font-style: italic">{{ stu.rating |title }} / 10 </p>
+            </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2 " data-aos="zoom-in" data-aos-delay="100">
+            <img height="500" src="{{ stu.pphoto.url }}" alt="" class="img-fluid">
+              <br><center>
+      <i class='bx bx-loader-circle bx-tada' style='color:#1416e1' >
+          <br>
+             <h4>Guide :</h4> <button class="btn btn-danger btn-lg"> {{stu.gustatus}} </button>
+                     <h4>HOD :</h4>   <button class="btn btn-danger btn-lg"> {{stu.hostatus}} </button>
+
+           </i>   <br> </center>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+<h2> <i class='bx bx-images bx-flashing' style='color:#ec10e4' ></i> Screen Shots</h2>
+
+    <div class="row">
+
+      <figure class="col-md-3">
+        <a href="{{stu.photo_1.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_1.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{stu.photo_2.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_2.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{stu.photo_3.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_3.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{stu.photo_4.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_4.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+{#     <figure class="col-md-2">#}
+{#        <a href="{{stu.photo_5.url}}" >#}
+{#          <img style="height: 200px;width: 200px;" alt="picture" src="{{stu.photo_5.url}}" class="img-fluid">#}
+{#        </a>#}
+{#      </figure>#}
+
+
+
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

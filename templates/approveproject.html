@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% include 'alerts.html' %}
+<h3 style="text-decoration: none;">
+    <a class="btn btn-success" style="float: left"
+       href="{% url 'gprojectlist' %}"> Project List</a>
+
+    <a class="btn btn-warning"
+       style="float: right;margin-left: 10px"
+       href="{% url 'gdelete' object.pk %}">
+        Delete</a>
+</h3>
+    <div class="container">
+    <div class="section-title">
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-9">
+              <h5> <span style="color:red;">Sir/Mam, </span><br>
+            My Self
+            <span style="font-weight: bold;font-style: italic;color:blue;">
+                {{ object.user.user.first_name }} {{ object.user.user.last_name }},
+            </span>
+            Batch Year :   <span style="font-weight: bold;font-style: italic">
+                {{ object.user.batch }},  </span>
+
+                    Semester:   <span style="font-weight: bold;font-style: italic">
+                {{ object.user.semester }},  </span>
+            Bearing Roll No :
+                   <span style="font-weight: bold;font-style: italic">
+                {{ object.user.hallticket }} </span> <br>
+            <br>
+            I Request to Upload My <span style="font-weight: bold;font-style: italic">
+                {{ object.ptype }},  </span> with this Title name : <span style="font-weight: bold;font-style: italic">
+                {{ object.ptitle }}  </span> Please Check Approve My Project.
+            <br><br> Email Id  : <span style="font-weight: bold;font-style: italic">
+                {{ object.user.user.email }},  </span> Mobile Number :  <span style="font-weight: bold;font-style: italic">
+                {{ object.user.phone }} </span>
+        </h5>
+            </div>
+            <div class="col-3">
+                <img height="150px" src="{{ object.user.photo.url }}" alt="">
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+    <br>
+    <hr>
+
+         <section style="padding: 10px" id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Project : <b>{{ object.ptitle |upper }}</b> </h2>
+          <p>Description : <i>{{ object.pdescription |title }}</i></p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column align-items-lg-center">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+              <i class='bx bx-user-pin bx-burst' style='color:#ff0808' ></i>
+              <h4>Under the Guidence of : <span style="color:blue;font-weight: bold">{{ object.guide |upper }}</span></h4>
+              <p>  {{ object.ptype |title}} Project is Completed Under the
+                    Guidence of  {{ object.guide |title }} &emsp; &emsp; &emsp; &emsp;
+                  </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
+              <a download="Abstract" href="{{ object.pabstract.url }}">
+                <i class='bx bxs-file bx-fade-right' style='color:#083cff'  ></i>
+              <h4> Abstract : </h4></a>
+              <p>  {{ object.ptype |title}} Abstract attached in this File.
+                 &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp;  &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp;  &emsp; </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+
+
+                <i class='bx bxs-file-archive bx-tada' style='color:#f20de6' ></i>
+                  <h4>Project & Files </h4>
+              <p>
+                All  {{ object.ptype |title}}  Files are Converted into
+                  in ZIP Format in this <b> <a target="_blank" href="{{ object.pshare }}">{{ object.pshare }} </a> </b> Link. </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+              <i class='bx bxs-file-doc bx-spin' style='color:#0de30d'  ></i>
+                <a download="EDocument" href="{{ object.ereport }}">
+                <h4>E-Documentation</h4></a>
+              <p>{{ object.ptitle |title }}  {{ object.ptype |title}} Project Documentation
+              along with Databases are Attached in this File.</p>
+            </div>
+
+    <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+
+                <h4>    My project Live Share on this Link : Please Check it Sir/Mam .</h4>
+              <p><a target="_blank" href="{{ object.pshare |title }} ">{{ object.pshare |title }} </a> </p>
+            </div>
+
+              <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+
+                <h4>    HOD Sir Aproval : <button class="btn btn-warning btn-lg"> {{ object.hostatus |title }}  </button> </h4>
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+   <div class="image col-lg-6 order-1 order-lg-2 " data-aos="zoom-in" data-aos-delay="100">
+            <img height="500" src="{{ object.pphoto.url }}" alt="" class="img-fluid">
+
+               <form method="POST" enctype="multipart/form-data">
+		<!-- Security token by Django -->
+		{% csrf_token %}
+                   <br>
+ {{ form.gustatus|as_crispy_field }}
+                    {{ form.gucomments|as_crispy_field }}
+                      {{ form.rating|as_crispy_field }}
+
+		<!-- form as paragraph -->
+{#		<p><label for="id_gustatus">Guide Approaval :</label>#}
+{#            <input class="form-control" type="text" name="gustatus" value="{{object.gustatus }}" maxlength="250" required id="id_gustatus"></p>#}
+{#<p><label for="id_gucomments">G U Comments:</label>#}
+{#    <textarea name="gucomments" cols="40" rows="10"  required id="id_comments">{{ object.gucomments }}#}
+{#</textarea></p>#}
+{##}
+{#<p><label for="id_rating">Rating:</label> <input type="number" name="rating" value="{{ object.rating }}" maxlength="250" required id="id_rating"></p>#}
+<center>
+		<input class="btn btn-success" type="submit" value="Update"></center>
+	</form>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2> <i class='bx bx-images bx-flashing' style='color:#ec10e4' ></i> Screen Shots</h2>
+
+    <div class="row">
+
+      <figure class="col-md-3">
+        <a href="{{object.photo_1.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{object.photo_1.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{object.photo_2.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{object.photo_2.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{object.photo_3.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{object.photo_3.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{object.photo_4.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{object.photo_4.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}

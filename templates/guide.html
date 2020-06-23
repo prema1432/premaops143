@@ -1,0 +1,86 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+    <section id="about" class="about" style="padding: 50px">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
+            <img  width="300px" height="300px" src="{{ request.user.guide.photo.url }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h4 style="font-weight: bold">Welcome <span style="color:red;">
+          {{ request.user.first_name |upper }} {{ request.user.last_name |upper }}</span></h4>
+            <p class="font-italic" style="text-align: center">
+                <b>{{ request.user.guide.degrees | upper }}</b></p>
+               <p style="text-align: center;font-size:20px"> <b>{{ request.user.guide.designatation | upper }}</b> </p>
+
+              <center><p><b> Department of Computer Science </b> </p>
+              <p>
+
+                 <b> Sri Venkateswara University, </b>
+                <b>Tirupathi.</b>.
+
+            </p></center>
+              <br>
+            <ul>
+              <li><i class="icofont-check-circled"></i> Email Id : <b>{{ request.user.email }}</b></li>
+              <li><i class="icofont-check-circled"></i> Phone Number : <b>{{ request.user.guide.phone }}</b></li>
+             <li><i class="icofont-check-circled"></i> Your Username : <b>{{ request.user.username }}</b></li>
+
+            </ul>
+{#            <a href="{% url 'createproject' %}" class="read-more">Submission Project <i class="icofont-long-arrow-right"></i></a>#}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+<section id="services" class="services section-bg">
+      <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div  class="section-title">
+            <a href="{% url 'gprojectlist' %}"><h3 ><span style="font-weight: bold;font-style: italic"><u style="color: blue">Projects</u></span></h3></a>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+            {% for stu in pupload %}
+                    <div class="col-4" style="padding: 15px">
+          <div class="card text-center">
+  <div class="card-header">
+       <span style="color:red;font-weight: bold"> {{ stu.ptype | upper }}</span>
+
+  </div>
+  <div class="card-body">
+                      <img class="card-img" height="200" src="{{ stu.pphoto.url }}" alt="">
+
+    <h5 class="card-title"><span style="font-weight: bold">{{ stu.ptitle | upper }}</span></h5>
+    <p class="card-text">{{ stu.pdescription | truncatechars_html:20 }}</p>
+      <p><i class='bx bx-user-pin bx-burst' style='color:#ff0808' ></i>
+          Student - <i> <span><b> <br>
+                    {{ stu.user.user.first_name | upper }}{{ stu.user.user.last_name | upper }}
+
+           <br>   {{ stu.user.hallticket }}
+          <br>{{ stu.r }}</b></span></i></p>
+    <a href="{% url 'gapprove' stu.id %}" class="btn btn-primary">Open This Project</a>
+   <i class='bx bx-loader-circle bx-tada-hover' style='color:#1416e1' >
+              <button class="btn btn-danger btn-lg"> {{stu.hostatus}} </button>
+           </i>
+
+  </div>
+  <div class="card-footer text-muted">
+   <span style="font-weight: bold;color: black">{{ stu.pdate  }}
+   {{ stu.pstatus }}
+   </span>
+  </div>
+          </div></div>
+{% endfor %}
+
+
+        </div>
+
+      </div>
+    </section>
+
+{% endblock %}

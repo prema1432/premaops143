@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{%  block content %}
+     <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p><label for="id_user">User:</label>
+ <input type="text" name="user" value="{{ stu.ptitle}}">
+
+        <select name="user" required id="id_user">
+  <option value="" selected>---------</option>
+
+  <option value="1">New title</option>
+
+  <option value="3">nenwnqneqnw</option>
+
+  <option value="5">JJJiujijij</option>
+
+</select></p>
+<p><label for="id_pstatus">Pstatus:</label> <input type="text" name="pstatus" value="Pending" maxlength="250" required id="id_pstatus"></p>
+<p><label for="id_comments">Comments:</label> <textarea name="comments" cols="40" rows="10" required id="id_comments">
+</textarea></p>
+<p><label for="id_about">About:</label> <textarea name="about" cols="40" rows="10" required id="id_about">
+</textarea></p>
+<p><label for="id_rating">Rating:</label> <input type="text" name="rating" maxlength="250" required id="id_rating"></p>
+    <input type="submit">
+</form>
+</form>
+
+{% endblock %}

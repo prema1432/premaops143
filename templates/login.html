@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+      {% include 'alerts.html' %}
+<section id="login" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4 style="text-align: center">
+
+                  Login <i class='bx bx-log-in bx-flip-vertical bx-fade-right' style='color:#77ec0c;font-size: 40px' ></i>
+              </h4>
+            </div>
+
+            <div class="card-body">
+              <form action="{%  url 'login' %}" method="post">
+                  {%  csrf_token %}
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="password2">Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <input type="submit" value="Login" class="btn btn-primary btn-block">
+              </form>
+                <br>
+              <i class='bx bxs-user-plus bx-flip-horizontal bx-burst' style='color:#ec3d0c' >
+                <h3 style="text-align: center"><a style="font-weight: bold" class="btn btn-warning" href="{%  url 'register' %}"> New to register </a>
+                </i>
+                </h3>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,61 @@
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li><a href="{% url 'index' %}">Home</a></li>
+                        {% if user.is_authenticated %}
+
+                <li>
+
+                </li>
+
+                             <li class="nav-item mr-3">
+                <a href="javascript:{document.getElementById('logout').submit()}"
+                   class="nav-link"><i class="fas fa-sign-out-alt"></i>Logout
+
+                </a>
+
+                <form action="{%  url 'logout' %}" method="POST" id="logout">
+                    {%  csrf_token %}
+                    <input type="hidden">
+                </form>
+
+            </li>
+{% else %}
+                <li><a href="{% url 'searchproject' %}">Project List</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Projects</a></li>
+              <li><a href="#features">Features</a></li>
+
+              <li>
+
+                  <a href="#testimonials">Facultys</a>
+
+              </li>
+       <li><a href="#faq">FAQ's</a></li>
+
+{#              <li class="drop-down"><a href="">Drop Down</a>#}
+{#                <ul>#}
+{#                  <li><a href="#">Drop Down 1</a></li>#}
+{#                  <li class="drop-down"><a href="#">Deep Drop Down</a>#}
+{#                    <ul>#}
+{#                      <li><a href="#">Deep Drop Down 1</a></li>#}
+{#                      <li><a href="#">Deep Drop Down 2</a></li>#}
+{#                      <li><a href="#">Deep Drop Down 3</a></li>#}
+{#                      <li><a href="#">Deep Drop Down 4</a></li>#}
+{#                      <li><a href="#">Deep Drop Down 5</a></li>#}
+{#                    </ul>#}
+{#                  </li>#}
+{#                  <li><a href="#">Drop Down 2</a></li>#}
+{#                  <li><a href="#">Drop Down 3</a></li>#}
+{#                  <li><a href="#">Drop Down 4</a></li>#}
+{#                </ul>#}
+{#              </li>#}
+                <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="#contact">Contact</a></li>
+
+            </ul>
+          </nav><!-- .nav-menu -->
+
+          <a href="{% url 'login' %}" class="get-started-btn scrollto">Login</a>
+
+          {% endif %}

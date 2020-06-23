@@ -1,0 +1,23 @@
+#header{
+    height: 50px;
+    background: #a41515;
+    color: white;
+}
+#branding h1{
+    color: white;
+    font-weight: bold;
+}
+h1{
+    color: red;
+}
+a:link,
+a:visited{
+    color: blue;
+}
+div.breadcrumbs{
+    background: cornflowerblue;
+    color: green;
+}
+div.breadcrumb a{
+    color: orangered;
+}

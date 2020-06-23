@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for stu in pupload %}
+
+
+	{{ stu.ptitle }}<br/>
+	{{ stu.pabstract }}<br/>
+        	{{ stu.ptitle }}<br/>
+        {{ stu.plink }}<br/>
+                {{ stu.pshare }}<br/>
+        <a download=" " href="{{ stu.pabstract.url }}">Abstract</a>
+                <img src="{{ stu.photo.url }}" alt="">
+
+        <a href=""> Selected One </a>
+
+
+{#    &nbsp;&nbsp;   <a href="{% url 'update_view' stu.pk   %}"> Update </a> &nbsp;&nbsp;#}
+{#        <a href="{% url 'delete_view' stu.pk   %}"> Deleete </a>#}
+	<hr/>
+
+	{% endfor %}
+
+</body>
+</html>

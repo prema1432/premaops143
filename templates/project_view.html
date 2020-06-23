@@ -1,0 +1,123 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'alerts.html' %}
+<h3 style="text-decoration: none;">
+    <a class="btn btn-success" style="float: left"
+       href="{% url 'userprojectlist' %}">My Projects</a>
+
+    <a class="btn btn-warning"
+       style="float: right;margin-left: 10px"
+       href="{% url 'projectdelete' stu.id  %}">
+        Delete</a>
+
+     <a class="btn btn-primary"
+        style="float:right;margin-left: 10px;margin-right: 10px"
+        href="{% url 'projectupdate' stu.id  %}">Edit</a>
+
+
+
+</h3>
+
+   <section style="padding: 10px" id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Project : <b>{{ stu.ptitle |upper }}</b> </h2>
+          <p>Description : <i>{{ stu.pdescription |title }}</i></p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column align-items-lg-center">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+              <i class='bx bx-user-pin bx-burst' style='color:#ff0808' ></i>
+              <h4>Under the Guidence of : <span style="color:blue;font-weight: bold">{{ stu.guide |upper }}</span></h4>
+              <p>  {{ stu.ptype |title}} Project is Completed Under the
+                    Guidence of  {{ stu.guide |title }} &emsp; &emsp; &emsp; &emsp;
+                  </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
+              <a download="Abstract" href="{{ stu.pabstract.url }}">
+                <i class='bx bxs-file bx-fade-right' style='color:#083cff'  ></i>
+              <h4> Abstract : </h4></a>
+              <p>  {{ stu.ptype |title}} Abstract attached in this File.
+                 &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp;  &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp;  &emsp; </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+
+
+                <i class='bx bxs-file-archive bx-tada' style='color:#f20de6' ></i>
+                  <h4>Project & Files </h4>
+              <p>
+                All  {{ stu.ptype |title}}  Files are Converted into
+                  in ZIP Format in this <b> {{ stu.pshare }} </b> Link. </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+              <i class='bx bxs-file-doc bx-spin' style='color:#0de30d'  ></i>
+                <a download="EDocument" href="{{ stu.ereport }}">
+                <h4>E-Documentation</h4></a>
+              <p>{{ stu.ptitle |title }}  {{ stu.ptype |title}} Project Documentation
+              along with Databases are Attached in this File.</p>
+            </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2 " data-aos="zoom-in" data-aos-delay="100">
+            <img height="500" src="{{ stu.pphoto.url }}" alt="" class="img-fluid">
+              <br><center><br>
+              <a href="{% url 'project_status' stu.id %}">
+                  <i class='bx bxs-hand-up bx-flip-horizontal bx-burst' style='color:#f30707' ><h3>Your Project Status</h3>
+{#      <i class='bx bx-loader-circle bx-tada' style='color:#1416e1' >#}
+
+             <h4 style="color:blue;">Guide :</h4> <button class="btn btn-danger "> {{stu.gustatus}} </button>
+                     <h4 style="color:blue;">HOD :</h4>   <button class="btn btn-danger"> {{stu.hostatus}} </button>
+
+{#           </i>  #}
+                   </center> </a></i>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+<h2> <i class='bx bx-images bx-flashing' style='color:#ec10e4' ></i> Screen Shots</h2>
+
+    <div class="row">
+
+      <figure class="col-md-3">
+        <a href="{{stu.photo_1.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_1.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{stu.photo_2.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_2.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{stu.photo_3.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_3.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+     <figure class="col-md-3">
+        <a href="{{stu.photo_4.url}}" >
+          <img style="height: 200px;width: 200px;"  alt="picture" src="{{stu.photo_4.url}}" class="img-fluid">
+        </a>
+      </figure>
+
+{#     <figure class="col-md-2">#}
+{#        <a href="{{stu.photo_5.url}}" >#}
+{#          <img style="height: 200px;width: 200px;" alt="picture" src="{{stu.photo_5.url}}" class="img-fluid">#}
+{#        </a>#}
+{#      </figure>#}
+
+
+
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

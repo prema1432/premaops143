@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<h4 style="font-style: italic;text-align: center">Hi, <span style="color:tomato;font-weight: bold"> {% if user.is_authenticated %}{{user.username}} {% endif %} </span>Fill Basic Details.
+   This is <span style="color:red;font-weight: bold;">O</span>ne <span style="color:red;font-weight: bold;">T</span>ime <span style="color:red;font-weight: bold;">R</span>egister
+    for <span style="color:blue;font-weight: bold;">O</span>nline <span style="color:blue;font-weight: bold;">P</span>roject <span style="color:blue;font-weight: bold;">S</span>ubmission.
+</h4>
+</div>
+{#    <form action="" method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p}}#}
+{#        <input type="submit">#}
+{#    </form>#}
+  {% include 'alerts.html' %}
+    <section id="login" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+
+              <h4 style="text-align: center">
+                <i class="fas fa-sign-in-alt"></i> Student One Time Register</h4>
+            </div>
+
+            <div class="card-body">
+              <form action="" method="post" enctype="multipart/form-data">
+                  {%  csrf_token %}
+                <div class="form-group">
+                  <input type="hidden" name="user"
+                         {% if user.is_authenticated %} value="{{user.id}}" {% endif %}
+                         class="form-control" >
+                </div>
+
+
+   <div class="form-group">
+       <label for="id_hallticket">Hallticket:</label> <input type="number" name="hallticket" class="form-control" required id="id_hallticket">
+   </div>
+              <div class="row">
+                  <div class="col-md-6">
+                         <div class="form-group"><label for="id_course">Course:</label>
+        <select class="custom-select" name="course" id="id_course">
+  <option value="MCA" selected>MCA</option>
+
+</select>
+
+           </select>
+
+   </div>
+
+                  </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                      <label for="id_semester">Semester:</label>
+                      <select class="custom-select" name="semester" id="id_semester">
+                          <option value="Third">Third</option>
+
+  <option value="Fourth" selected>Fourth</option>
+
+  <option value="Fifth">Fifth</option>
+
+  <option value="Six">Six</option>
+
+</select>
+                  </div>
+                  </div>
+              </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+                      <label for="id_batch">Batch:</label> <input type="text" name="batch" maxlength="50" class="form-control" required id="id_batch">
+                  </div>
+    </div>
+      <div class="col-md-6">
+  <div class="form-group">
+         <label for="id_sex">Gender:</label> <select class="custom-select"  name="sex" id="id_sex">
+         <option value="Male" selected>Male</option>
+
+  <option value="Female">Female</option>
+
+     </select></div>
+    </div>
+
+</div>
+
+                 <div class="form-group">
+                     <label for="id_DOB">DOB:</label>
+   <input type="date" name="DOB"  class="form-control" required id="id_DOB">
+                 </div>
+<div class="form-group">
+    <label for="id_phone">Phone:</label>
+     <input type="number" name="phone" class="form-control" required id="id_phone">
+</div>
+          <div class="form-group">
+<label for="id_technology">Technology:</label> <input type="text" name="technology" class="form-control" required id="id_technology">
+          </div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Photo</button>
+  </div>
+  <div class="custom-file">
+    <input type="file" name="photo" accept="image/*" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+    <label class="custom-file-label" for="inputGroupFile03">Your Photo</label>
+  </div>
+</div>
+
+                <input type="submit" value="Submit OTR" class="btn btn-outline-success btn-block">
+     </form>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
